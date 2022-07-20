@@ -41,3 +41,21 @@ char* Validacion::ingresarDatoSinMsj(){
 	dato[i]='\0';
 	return dato;
 }
+
+char* Validacion::ingresarDatoC(char *msj){
+	char *dato=new char[10],c;
+	int i=0;
+	printf("%s ",msj);
+	while((c=getch())!=13){
+		if(c>='a'&& c<='z'){
+			printf("%c",c);
+			dato[i++]=c;
+				}
+		else if(c==8||c==127){
+			printf("\b \b");
+			dato[i--]=0;
+		}
+	}
+	dato[i]='\0';
+	return dato;
+}

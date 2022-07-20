@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Nodo.h"
+#include "Validacion.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int menu();
@@ -7,6 +8,8 @@ int menu();
 int main(int argc, char** argv) {
 	
 	Validacion v;
+	Node nod;
+	Node* root = NULL;
 	int opc, dim;
 	char val[10];
 	do{
@@ -16,41 +19,23 @@ int main(int argc, char** argv) {
 		{
 			case 1:{
 				char* mensaje = (char*) "\nIngrese un valor: ";
-				strcpy(val,v.ingresarDato(mensaje));
-        		dim=atoi(val);
-				objt.ingreso(dim);	
+				strcpy(val,v.ingresarDatoC(mensaje));
+				insert(&root, val);	
 				cout<<endl;
 				break;
 			}
 			case 2:{
 				char* mensaje = (char*) "\nIngrese el valor que desea buscar: ";
-				strcpy(val,v.ingresarDato(mensaje));
-        		dim=atoi(val);
-        		cout<<endl;
-				if (objt.busqueda(dim)==1){
-					cout << "El valor ha sido encontrado" << endl;
-					objt.impresion();
-				}
-				else {
-					cout << "Valor no encontrado" << endl;
-				};			            
-				break;
+				strcpy(val,v.ingresarDatoC(mensaje));
+        		searchTST(root, val) ? cout << "Found\n"
+                                      : cout << "Not Found\n";
 			}
-			case 3:{
-				char* mensaje = (char*) "\nIngrese el valor que desea eliminar: ";
-				strcpy(val,v.ingresarDato(mensaje));
-        		dim=atoi(val);
-        		cout<<endl;
-				if (objt.eliminar(dim)) {
-					cout << "Despues de la eliminacion" << endl;
-				}
-				else {
-					cout << "Valor no encontrado" << endl;
-				};			            
+			case 3:{			            
 				break;
 			}
 			case 4:{
-				objt.impresion();			            
+				cout<<"\nPalabras dentro del arbol"<<endl;
+				traverseTST(root);			            
 				break;
 			}
 			case 0:{
