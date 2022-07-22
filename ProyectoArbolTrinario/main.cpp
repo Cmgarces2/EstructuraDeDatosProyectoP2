@@ -1,100 +1,63 @@
 #include<iostream>
 #include "Arbol.h"
 #include "Validacion.h"
-//#define level 0
+#include "Menu.h"
+#include "utils.h"
+
 using namespace std;
-  
-// Driver function
-int menu();
-int main(int argc, char** argv)
-{
+
+int main(int argc, char** argv){
+	char* us,*us1,*cl,*cl1;
+	Menu menu;
 	Validacion v;
 	class Node *temp = NULL;
 	int opc, dim, level=0;
 	char val[20], str[20];
-	do{
-		system("cls");
-		opc=menu();
-		switch(opc)
-		{
-			case 1:{
-				char* mensaje = (char*) "\nIngrese un valor: ";
-				strcpy(val,v.ingresarDatoC(mensaje));
-				insert_node(&temp, val);	
-				cout<<endl;
-				break;
-			}
-			case 2:{
-				char* mensaje = (char*) "\nIngrese el valor que desea buscar: ";
-				strcpy(val,v.ingresarDatoC(mensaje));
-        		searchTST(temp, val) ? cout << "Found\n"
-                                      : cout << "Not Found\n";
-                break;
-			}
-			case 3:{
-				char* mensaje = (char*) "\nIngrese el valor que desea buscar: ";
-				strcpy(val,v.ingresarDatoC(mensaje));
-				level = 0;
-				delete_node(temp,val, level, 5);
-				level = 0;		            
-				break;
-			}
-			case 4:{
-				cout<<"\nPalabras dentro del arbol"<<endl;
-				level = 0;
-				display(temp, str, level);
-				level = 0;
-				//cout<<str<<endl;
-				//traverseTST(temp);			            
-				break;
-			}
-			case 0:{
-				cout<<"\nAdios, Gracias por usar el programa :D "<<endl;
-				break;
-			}
-			default:{
-				cout<<"\nError. Opcion incorrecta"<<endl;
-				break;
-			}
-		}
-		system("pause");
-	}while(opc!=0);
 	
-    /*class Node *temp = NULL;
- 
-    insert_node(&temp, "CAT");
-    insert_node(&temp, "BUGS");
-    insert_node(&temp, "CATS");
-    insert_node(&temp, "UP");
- 
-    int level = 0;
-    char str[20];
-
-    cout << "1.Content of the TST before deletion:\n";
-    display(temp, str, level);
- 
-
-    delete_node(temp,"CAT", level, 5);
- 
-
-    cout << "\n2.Content of the TST after deletion:\n";
-    display(temp, str, level);*/
+	us1={"a"};
+	cl1={"a"};
+	cout<<endl<<endl<<endl<<"				Ingreso al sistema"<<endl<<endl<<endl;
+	us= validarC("Usuario: ");
+	cl= validarCLV("Clave: ");
+	if(strcmp(us,us1)==0 && strcmp(cl,cl1)==0){
+		system("cls");
+		do{
+			system("cls");
+			opc=menu.menu();
+			switch(opc){
+				case 0:{
+					strcpy(val,v.ingresarDatoC("\nIngrese una palabra: "));
+					insert_node(&temp, val);
+					break;
+				}
+				case 1:{
+					strcpy(val,v.ingresarDatoC("\nIngrese el valor que desea buscar: "));
+    	    		searchTST(temp, val) ? cout << "Found\n" : cout << "Not Found\n";
+    	            break;
+				}
+				case 2:{
+					strcpy(val,v.ingresarDatoC("\nIngrese el valor que desea eliminar: "));
+					delete_node(temp,val, level, 5);		            
+					break;
+				}
+				case 3:{
+					cout<<"\nPalabras dentro del arbol"<<endl;
+					display(temp, str, level);            
+					break;
+				}
+				case 4:{
+					cout<<"\nAdios, Gracias por usar el programa :D "<<endl;
+					break;
+				}
+				default:{
+					cout<<"\nError. Opcion incorrecta"<<endl;
+					break;
+				}
+			}
+			system("pause");
+		}while(opc!=4);
+	} else{
+		cout<<"Ingreso de datos incorrecto"<<endl;
+	}
     return 0;
 }
-
-int menu()
-		{
-			int opc;
-			char val[10];
-			Validacion v;
-			cout<<"\n****************************MENU****************************\n"<<endl
-				<<"1. Ingresar un elemento a la tabla"<<endl
-				<<"2. Buscar un elemento en la tabla"<<endl
-				<<"3. Eliminar un elemento en la tabla"<<endl
-				<<"4. Imprimir tabla"<<endl
-				<<"0. Salir"<<endl;
-			char* mensaje = (char*) "\nEscoja una opcion: ";
-			strcpy(val,v.ingresarDato(mensaje));
-        	opc=atoi(val);
-			return opc;
-		}
