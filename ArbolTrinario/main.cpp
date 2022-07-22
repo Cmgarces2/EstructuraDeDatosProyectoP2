@@ -29,8 +29,12 @@ int main(int argc, char** argv) {
 				strcpy(val,v.ingresarDatoC(mensaje));
         		searchTST(root, val) ? cout << "Found\n"
                                       : cout << "Not Found\n";
+                break;
 			}
-			case 3:{			            
+			case 3:{
+				char* mensaje = (char*) "\nIngrese el valor que desea buscar: ";
+				strcpy(val,v.ingresarDatoC(mensaje));
+				delete_node(root,val,0);			            
 				break;
 			}
 			case 4:{

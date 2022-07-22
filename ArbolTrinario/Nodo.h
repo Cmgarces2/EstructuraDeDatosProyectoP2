@@ -77,7 +77,7 @@ void traverseTSTUtil(Node* root, char* buffer, int depth)
  
 // The main function to traverse a Ternary Search Tree.
 // It mainly uses traverseTSTUtil()
-void traverseTST(struct Node* root)
+void traverseTST(class Node* root)
 {
     char buffer[MAX];
     traverseTSTUtil(root, buffer, 0);
@@ -101,4 +101,58 @@ int searchTST(Node* root, char* word)
  
         return searchTST(root->eq, word + 1);
     }
+}
+
+int isFreeNode(class Node *root)
+{
+    if (root->left ||root->eq ||root->right)
+        return 0;
+    return 1;
+}
+
+int delete_node(class Node *root, char str[], int depth)
+{
+    if (root == NULL)
+        return 0;
+ 
+ 
+    // CASE 4 Key present in TST, having atleast
+    // one other key as prefix key.
+    if (str[depth+1] == '\0')
+    {
+        // Unmark leaf node if present
+        if (root->isEndOfString)
+        {
+            root->isEndOfString = 0;
+            return isFreeNode(root);
+        }
+ 
+        // else string is not present in TST and
+        // return 0
+        else
+            return 0;
+    }
+ 
+    // CASE 3 Key is prefix key of another long
+    // key in TST.
+    if (str[depth] < root->data)
+        return delete_node(root->left, str, depth);
+    if (str[depth] > root->data)
+        return delete_node(root->right, str, depth);
+ 
+    // CASE 1 data may not be there in TST.
+    if (str[depth] == root->data)
+    {
+        // CASE 2 data present as unique data
+        if (delete_node(root->eq, str, depth+1))
+        {
+            // delete the last node, neither it has
+            // any child nor it is part of any other
+            // string
+            delete(root->eq);
+            return !root->isEndOfString && isFreeNode(root);
+        }
+    }
+ 
+    return 0;
 }
