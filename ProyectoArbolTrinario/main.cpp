@@ -3,7 +3,7 @@
 #include "Validacion.h"
 #include "Menu.h"
 #include "utils.h"
-#include "marquesina.h"
+//#include "marquesina.h"
 
 using namespace std;
 
@@ -13,7 +13,8 @@ int main(int argc, char** argv){
 	Validacion v;
 	class Node *temp = NULL;
 	int opc, dim, level=0;
-	char val[20], str[20];
+	char *val = new char[20];
+	char *str = new char[20];
 	
 	us1={"a"};
 	cl1={"a"};
