@@ -16,8 +16,8 @@ int main(int argc, char** argv){
 	char *val = new char[20];
 	char *str = new char[20];
 	
-	us1={"a"};
-	cl1={"a"};
+	us1={"admin"};
+	cl1={"admin"};
 	cout<<endl<<endl<<endl<<"				Ingreso al sistema"<<endl<<endl<<endl;
 	us= validarC("Usuario: ");
 	cl= validarCLV("Clave: ");
@@ -29,8 +29,10 @@ int main(int argc, char** argv){
 			switch(opc){
 				case 0:{
 					strcpy(val,v.ingresarDatoC("\nIngrese una palabra: "));
+					if(searchTST(temp, val)==1){
+						cout << "\nPalabra ya ingresada\n";
+					}
 					insert_node(&temp, val);
-					break;
 				}
 				case 1:{
 					strcpy(val,v.ingresarDatoC("\nIngrese el valor que desea buscar: "));
