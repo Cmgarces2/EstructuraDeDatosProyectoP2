@@ -56,7 +56,7 @@ void insert_node(class Node **root, char *s)
 }
  
 // function to display the TST
-void display(class Node *root, char str[], int level)
+void display(class Node *root, char* str, int level)
 {
     if (!root)
         return;
@@ -90,7 +90,7 @@ int isFreeNode(class Node *root)
 }
  
 // function to delete a string in TST
-int delete_node(class Node *root, char str[],
+int delete_node(class Node *root, char* str,
                 int level, int n)
 {
     if (root == NULL)

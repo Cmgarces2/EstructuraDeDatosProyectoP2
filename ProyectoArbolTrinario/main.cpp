@@ -32,7 +32,7 @@ int main(int argc, char** argv){
 				}
 				case 1:{
 					strcpy(val,v.ingresarDatoC("\nIngrese el valor que desea buscar: "));
-    	    		searchTST(temp, val) ? cout << "Found\n" : cout << "Not Found\n";
+    	    		searchTST(temp, val) ? cout << "\nPalabra encontrada\n" : cout << "\nPalabra no encontrada\n";
     	            break;
 				}
 				case 2:{
