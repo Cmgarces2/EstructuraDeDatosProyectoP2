@@ -3,11 +3,12 @@
 #include "Validacion.h"
 #include "Menu.h"
 #include "utils.h"
+#include "marquesina.h"
 
 using namespace std;
 
 int main(int argc, char** argv){
-	char* us,*us1,*cl,*cl1;
+	const char* us,*us1,*cl,*cl1;
 	Menu menu;
 	Validacion v;
 	class Node *temp = NULL;
